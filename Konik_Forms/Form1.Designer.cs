@@ -39,8 +39,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.StartButton = new System.Windows.Forms.Button();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.MoveKnight = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.Status = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -137,19 +142,72 @@
             // 
             // MoveKnight
             // 
-            this.MoveKnight.Location = new System.Drawing.Point(385, 309);
+            this.MoveKnight.Location = new System.Drawing.Point(385, 260);
             this.MoveKnight.Name = "MoveKnight";
-            this.MoveKnight.Size = new System.Drawing.Size(87, 22);
+            this.MoveKnight.Size = new System.Drawing.Size(131, 27);
             this.MoveKnight.TabIndex = 12;
             this.MoveKnight.Text = "Move Knight";
             this.MoveKnight.UseVisualStyleBackColor = true;
             this.MoveKnight.Click += new System.EventHandler(this.MoveKnight_Click);
             // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(385, 355);
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(131, 45);
+            this.trackBar1.TabIndex = 13;
+            this.trackBar1.Value = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // Status
+            // 
+            this.Status.AutoSize = true;
+            this.Status.Location = new System.Drawing.Point(307, 39);
+            this.Status.Name = "Status";
+            this.Status.Size = new System.Drawing.Size(90, 13);
+            this.Status.TabIndex = 14;
+            this.Status.Text = "Please enter data";
+
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(385, 314);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(67, 17);
+            this.checkBox1.TabIndex = 16;
+            this.checkBox1.Text = "Visualize";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(310, 76);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 13);
+            this.label7.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(310, 110);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 13);
+            this.label8.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 406);
+            this.ClientSize = new System.Drawing.Size(528, 406);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.Status);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.MoveKnight);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.textBox5);
@@ -164,6 +222,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,8 +240,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button StartButton;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button MoveKnight;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label Status;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 

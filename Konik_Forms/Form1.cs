@@ -17,6 +17,8 @@ namespace Konik_Forms
         int _boardX = 10, _boardY = 10;
         int _boardWidth = 240;
         int _boardHeight = 240;
+        int visualizationSpeed = 1;
+        long numberOfInterations = 0;
         Brush _borderColor = Brushes.Black;
         Brush _startColor = Brushes.Green;
         Brush _endColor = Brushes.Red;
@@ -50,8 +52,8 @@ namespace Konik_Forms
                 boardSize = Int32.Parse(textBox1.Text);
             };
 
-            boardPoint startPoint = new boardPoint(Int32.Parse(textBox2.Text), Int32.Parse(textBox4.Text));
-            boardPoint endPoint = new boardPoint(Int32.Parse(textBox3.Text), Int32.Parse(textBox5.Text));
+            boardPoint startPoint = new boardPoint(Int32.Parse(textBox2.Text)-1, Int32.Parse(textBox4.Text)-1);
+            boardPoint endPoint = new boardPoint(Int32.Parse(textBox3.Text)-1, Int32.Parse(textBox5.Text)-1);
 
             
             chessboard = new board(boardSize, startPoint, endPoint);
@@ -62,6 +64,7 @@ namespace Konik_Forms
             this.Invalidate();
 
         }
+
 
         void drawChessBoard(Graphics g)
         {
@@ -101,12 +104,20 @@ namespace Konik_Forms
         private void MoveKnight_Click(object sender, EventArgs e)
         {
             //create the first postion with no move
+            
+            knightMoves.Clear();
             knightMoves.Add(new knightMove(1));
             knightMoves.LastOrDefault().currentPoint = chessboard.startPoint;
 
+            Status.Text = "Calculating...";
+            this.Invalidate();
+            Application.DoEvents();
 
             while (!chessboard.checkSuccessCondition())
             {
+                numberOfInterations += 1;
+                label7.Text = "Number of Interations: " + numberOfInterations;
+                label8.Text = "Step number: " + knightMoves.Count();
                 //set wrong move to ignore
                 chessboard.wrongMoves = knightMoves.ElementAt(knightMoves.Count - 1).wrongMoves;
                 if (chessboard.getAvilablePoints().Count() > 0)
@@ -143,10 +154,24 @@ namespace Konik_Forms
 
 
                 }
-               // System.Threading.Thread.Sleep(1);
-                this.Invalidate();
-                Application.DoEvents();
+                if(checkBox1.Checked == true)
+                {
+                    visualizationSpeed = trackBar1.Value;
+                    System.Threading.Thread.Sleep(1000 / visualizationSpeed);
+                    this.Invalidate();
+                    Application.DoEvents();
+                }
+                                    
+                
             }
+            this.Invalidate();
+
+            Status.Text = "Please enter data";
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            visualizationSpeed = trackBar1.Value;
         }
 
         //Form1 Paint method calls DrawChessBoard
@@ -284,14 +309,30 @@ namespace Konik_Forms
 
         public bool checkSuccessCondition()
         {
-            if(boardArray.Where(p => p.visited == true).Count() == (Math.Pow(boardSize, 2)-2))
+            int numberOfVisitedField = boardArray.Where(p => p.visited == true).Count();
+            int totalNumberOfFields = Convert.ToInt32(Math.Pow(boardSize, 2));
+
+            if (getVisitablePoints().Contains(endPoint))
             {
-                return true;
+                if(startPoint == endPoint && numberOfVisitedField >= ( totalNumberOfFields - 1))
+                {
+                    return true;
+                }
+                else if(startPoint != endPoint && numberOfVisitedField >= (totalNumberOfFields - 2))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
             else
             {
                 return false;
             }
+            
         }
 
         public void moveKnight()

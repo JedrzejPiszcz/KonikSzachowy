@@ -12,7 +12,7 @@ namespace Konik_Forms
 {
     public partial class Form1 : Form
     {
-
+        //just a comment from github
         int boardSize = 1;
         int _boardX = 10, _boardY = 10;
         int _boardWidth = 240;

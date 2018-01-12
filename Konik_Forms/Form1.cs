@@ -104,7 +104,7 @@ namespace Konik_Forms
         private void MoveKnight_Click(object sender, EventArgs e)
         {
             //create the first postion with no move
-            
+            numberOfInterations = 0;
             knightMoves.Clear();
             knightMoves.Add(new knightMove(1));
             knightMoves.LastOrDefault().currentPoint = chessboard.startPoint;
@@ -314,11 +314,14 @@ namespace Konik_Forms
 
             if (getVisitablePoints().Contains(endPoint))
             {
-                if(startPoint == endPoint && numberOfVisitedField >= ( totalNumberOfFields - 1))
+                if(startPoint.coordinateX == endPoint.coordinateX && 
+                   startPoint.coordinateX == endPoint.coordinateY && 
+                   numberOfVisitedField >= ( totalNumberOfFields - 1))
+
                 {
                     return true;
                 }
-                else if(startPoint != endPoint && numberOfVisitedField >= (totalNumberOfFields - 2))
+                else if(numberOfVisitedField >= (totalNumberOfFields - 2))
                 {
                     return true;
                 }
